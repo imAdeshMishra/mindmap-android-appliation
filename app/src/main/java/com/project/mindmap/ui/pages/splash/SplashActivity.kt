@@ -6,8 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.project.mindmap.ui.pages.onboarding.carousal.OnboardingCarousalActivity
+
 import com.project.mindmap.ui.pages.onboarding.form.OnboardingFormActivity
 import com.project.mindmap.ui.pages.server.ServerConnectionActivity
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -29,8 +31,10 @@ class SplashActivity : ComponentActivity() {
     }
 
     private fun navigateToUserCategoryActivity() {
+
 //        startActivity(Intent(this, ServerConnectionActivity::class.java))
         startActivity(Intent(this, OnboardingFormActivity::class.java))
+
         finish() // Close SplashActivity so it doesn't stay in the back stack
     }
 }

@@ -4,3 +4,4 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     kotlin("kapt") version "1.8.10" apply false
 }
+

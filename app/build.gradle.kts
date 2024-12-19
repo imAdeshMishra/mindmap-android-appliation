@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
     id("com.google.dagger.hilt.android") version "2.48" apply false
     id("kotlin-kapt") // No version needed here
 }
@@ -43,7 +44,9 @@ android {
         compose = true
     }
     composeOptions {
+
         kotlinCompilerExtensionVersion = "1.5.13"
+
     }
     packaging {
         resources {
@@ -66,6 +69,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
 
+
     implementation(libs.foundation.pager)
     // Hilt for dependency injection
     implementation(libs.hilt.android)
@@ -85,6 +89,7 @@ dependencies {
 
     // Coroutine Support (if not already included)
     implementation(libs.kotlinx.coroutines.android)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

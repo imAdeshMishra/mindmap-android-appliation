@@ -1,17 +1,22 @@
 [versions]
+
 agp = "8.7.3"
 converterGson = "2.9.0"
 hiltAndroid = "2.48"
 kotlin = "1.9.23"
+
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+
 kotlinxCoroutinesAndroid = "1.7.3"
+
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2024.04.01"
 appcompat = "1.6.1"
+
 lifecycleRuntimeKtxVersion = "2.6.0"
 material = "1.10.0"
 activity = "1.9.3"
@@ -28,6 +33,7 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltAndroid" }
+
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -48,6 +54,7 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 foundation-pager = { group = "androidx.compose.foundation", name = "foundation", version.ref = "pagerVersion" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
