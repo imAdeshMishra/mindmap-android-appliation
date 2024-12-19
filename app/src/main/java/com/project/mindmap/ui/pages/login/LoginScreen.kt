@@ -34,6 +34,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.project.mindmap.ui.pages.onboarding.category.UserCategoryActivity
+
+import com.project.mindmap.ui.pages.onboarding.form.OnboardingFormActivity
+
 import com.project.mindmap.ui.pages.signup.SignupActivity
 import com.project.mindmap.ui.pages.splash.SplashDesign
 import com.project.mindmap.ui.theme.BoldH3White
@@ -171,7 +174,8 @@ fun ContinueButton(){
             .fillMaxWidth()
             ,
         onClick = {
-            mContext.startActivity(Intent(mContext, UserCategoryActivity::class.java))
+            mContext.startActivity(Intent(mContext, OnboardingFormActivity::class.java))
+
         }) {
         Text(text = "Continue", style = BoldH3White)
 

@@ -1,16 +1,12 @@
-package com.project.mindmap.ui.pages.signup
-
+package com.project.mindmap.ui.pages.server
 
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
-
-
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,29 +36,27 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.project.mindmap.models.LoginCredentials
-
-import com.project.mindmap.ui.pages.login.LoginActivity
-import com.project.mindmap.ui.pages.onboarding.category.UserCategoryActivity
+import com.project.mindmap.backend.network.RetrofitInstance
+import com.project.mindmap.ui.pages.onboarding.carousal.OnboardingCarousalActivity
+import com.project.mindmap.ui.pages.signup.SignupCredentialsComposable
 import com.project.mindmap.ui.pages.splash.SplashDesign
 import com.project.mindmap.ui.theme.BoldH3White
 import com.project.mindmap.ui.theme.NonBoldH2
 import com.project.mindmap.ui.theme.NonBoldH3
 import com.project.mindmap.ui.theme.outfitFontFamily
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 
-import com.project.mindmap.viewmodel.UserViewModel
-
-
+@Preview
 @Composable
-fun SignupScreenComposable(viewModel: UserViewModel){
-
+fun ServerConnectionScreenComposable(){
     Box(modifier = Modifier
         .fillMaxHeight()
         .background(color = Color(0XFFf8f8f8)),
@@ -74,20 +69,20 @@ fun SignupScreenComposable(viewModel: UserViewModel){
             verticalArrangement = Arrangement.Center) {
             Box (modifier = Modifier
             ){
-                Text(text = "SignUp",
+                Text(text = "Server Setup",
                     style = TextStyle(
                         fontSize = 40.sp,
                         fontFamily = outfitFontFamily,
                         color = Color(0XFF3b88e3),
                         fontWeight = FontWeight.Bold
-                    ))
+                    )
+                )
             }
             Text(text = "Welcome!",
-                style = NonBoldH2)
+                style = NonBoldH2
+            )
             Spacer(modifier = Modifier.height(24.dp))
-
-            SignupCredentialsComposable(viewModel)
-
+            ServerCredentialsComposable()
         }
         Box (modifier = Modifier
             .offset(x = (0).dp, y = 140.dp)
@@ -98,28 +93,22 @@ fun SignupScreenComposable(viewModel: UserViewModel){
             SplashDesign()
         }
     }
-
 }
 
-
-//@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignupCredentialsComposable(viewModel: UserViewModel){
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+fun ServerCredentialsComposable(){
+    var ipAddress by remember { mutableStateOf("192.168.1.1") }
     Column {
-        Text(text = "Enter your Email Id")
-        SignupCredentialsField("Your E-mail", email) { email = it }
-        Text(text = "Enter your Password")
-        SignupCredentialsField("Create Password", password) { password = it }
-        SignupOptions()
-        ContinueButton(email,password,viewModel)
+        Text(text = "Enter your Server IP Address")
+        ServerCredentialsField("198.168.1.1", ipAddress) { ipAddress = it }
+        ContinueButton(ipAddress)
     }
 }
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignupCredentialsField(hint: String, value: String, onValueChange: (String) -> Unit) {
+fun ServerCredentialsField(hint: String, value: String, onValueChange: (String) -> Unit) {
     val focusRequester = remember { FocusRequester() }
     var isFocused by remember { mutableStateOf(false) }
 
@@ -139,7 +128,6 @@ fun SignupCredentialsField(hint: String, value: String, onValueChange: (String) 
                 .focusRequester(focusRequester)
                 .onFocusChanged { focusState -> isFocused = focusState.isFocused }
                 .drawBehind {
-
                     val borderWidth = 2.dp.toPx()
                     val borderColor = if (isFocused) Color(0XFF3b88e3) else Color(0XFFe4e4e4)
                     val radius = 16.dp.toPx()
@@ -150,65 +138,69 @@ fun SignupCredentialsField(hint: String, value: String, onValueChange: (String) 
                         style = Stroke(width = borderWidth)
                     )
                 },
-
             placeholder = { Text(text = hint, style = NonBoldH3) },
         )
     }
 }
 
 
-
-
-
 @Composable
-fun SignupOptions(){
+fun ContinueButton(ipAddress: String) {
     val mContext = LocalContext.current
-    Row (modifier = Modifier
-        .fillMaxWidth()
-        .padding(bottom = 8.dp),
-        horizontalArrangement = Arrangement.End){
-//        Text(text = "Forget Password?", style = NonBoldH3)
-        Text(text = "Already a user?",
-            style = TextStyle(
-                fontFamily = outfitFontFamily,
-                color = Color(0XFF3b88e3),
-                fontWeight = FontWeight.Bold,
-                fontSize = 14.sp
-
-            ),
-            modifier = Modifier
-                .pointerInput(Unit) {
-                    detectTapGestures(
-                        onTap = {
-
-                            mContext.startActivity(Intent(mContext, LoginActivity::class.java))
-                        })
-                }
-        )
-    }
-}
-
-@Composable
-fun ContinueButton(email: String, password: String, viewModel: UserViewModel) {
-    val mContext = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
 
     Button(
         colors = ButtonDefaults.buttonColors(Color(0XFF3b88e3)),
         modifier = Modifier.fillMaxWidth(),
         onClick = {
-            if (email.isNotBlank() && password.isNotBlank()) {
-                // Create user credentials
-                val userCredentials = LoginCredentials(email, password)
+            if (ipAddress.isNotBlank()) {
+                val baseUrl = "http://$ipAddress:8080/"
+                RetrofitInstance.setBaseUrl(baseUrl) // Set the base URL once
 
-                // Call the ViewModel to hit the API
-                viewModel.createUser(userCredentials) { responseBody, error ->
-                    if (responseBody != null) {
-                        Toast.makeText(mContext, "User Created: ${responseBody["status"]}", Toast.LENGTH_SHORT).show()
-                        mContext.startActivity(Intent(mContext, UserCategoryActivity::class.java))
-                    } else {
-                        Toast.makeText(mContext, error ?: "Unknown Error", Toast.LENGTH_SHORT).show()
+                coroutineScope.launch {
+                    try {
+                        val response = RetrofitInstance.getAPI().establishConnection()
+                        if (response.isSuccessful) {
+                            val responseBody = response.body() // Retrieve the response body
+                            if (responseBody != null && responseBody["status"] == "success") {
+                                // Success case: Connection established
+                                Toast.makeText(
+                                    mContext,
+                                    "Connection Successful! ${responseBody["message"]}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                                // Navigate to the next activity
+                                val intent = Intent(mContext, OnboardingCarousalActivity::class.java)
+                                mContext.startActivity(intent)
+                            } else {
+                                // Backend returned failure status
+                                Toast.makeText(
+                                    mContext,
+                                    "Failed: ${responseBody?.get("message") ?: "Unknown Error"}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } else {
+                            // Non-successful HTTP response
+                            Toast.makeText(
+                                mContext,
+                                "Failed to connect: ${response.code()}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    } catch (e: Exception) {
+                        Toast.makeText(
+                            mContext,
+                            "Error: ${e.localizedMessage}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        Log.d("Server Connection","Error: ${e.localizedMessage}")
+
                     }
                 }
+
             } else {
                 Toast.makeText(mContext, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             }

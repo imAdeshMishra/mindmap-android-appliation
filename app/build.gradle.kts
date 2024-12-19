@@ -1,7 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
+    id("com.google.dagger.hilt.android") version "2.48" apply false
+    id("kotlin-kapt") // No version needed here
 }
+
 
 android {
     namespace = "com.project.mindmap"
@@ -40,7 +44,9 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+
+        kotlinCompilerExtensionVersion = "1.5.13"
+
     }
     packaging {
         resources {
@@ -62,7 +68,29 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
+
+
     implementation(libs.foundation.pager)
+    // Hilt for dependency injection
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.constraintlayout)
+    kapt(libs.hilt.compiler)
+
+    // ViewModel and LiveData
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.runtime.ktx.v260)
+
+    // Retrofit (if using for network requests)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    // Jetpack Navigation for Compose
+    implementation(libs.androidx.navigation.compose)
+
+    // Coroutine Support (if not already included)
+    implementation(libs.kotlinx.coroutines.android)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
