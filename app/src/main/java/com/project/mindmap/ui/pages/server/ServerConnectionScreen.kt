@@ -1,6 +1,5 @@
 package com.project.mindmap.ui.pages.server
 
-import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -21,6 +20,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,24 +39,28 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.project.mindmap.backend.network.RetrofitInstance
-import com.project.mindmap.ui.pages.onboarding.carousal.OnboardingCarousalActivity
-import com.project.mindmap.ui.pages.signup.SignupCredentialsComposable
 import com.project.mindmap.ui.pages.splash.SplashDesign
 import com.project.mindmap.ui.theme.BoldH3White
 import com.project.mindmap.ui.theme.NonBoldH2
 import com.project.mindmap.ui.theme.NonBoldH3
 import com.project.mindmap.ui.theme.outfitFontFamily
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import java.io.IOException
 
-@Preview
 @Composable
-fun ServerConnectionScreenComposable(){
+fun ServerConnectionScreenComposable(navController: NavController){
+
+    LaunchedEffect(Unit) {
+        kotlinx.coroutines.delay(2000) // 2 seconds delay
+        navController.navigate("serverConnection") {
+            // Optional: clear the back stack to avoid returning to the splash screen
+            popUpTo("splash") { inclusive = true }
+        }
+    }
+
     Box(modifier = Modifier
         .fillMaxHeight()
         .background(color = Color(0XFFf8f8f8)),
@@ -82,7 +86,7 @@ fun ServerConnectionScreenComposable(){
                 style = NonBoldH2
             )
             Spacer(modifier = Modifier.height(24.dp))
-            ServerCredentialsComposable()
+            ServerCredentialsComposable(navController)
         }
         Box (modifier = Modifier
             .offset(x = (0).dp, y = 140.dp)
@@ -96,12 +100,12 @@ fun ServerConnectionScreenComposable(){
 }
 
 @Composable
-fun ServerCredentialsComposable(){
+fun ServerCredentialsComposable(navController: NavController){
     var ipAddress by remember { mutableStateOf("192.168.1.1") }
     Column {
         Text(text = "Enter your Server IP Address")
         ServerCredentialsField("198.168.1.1", ipAddress) { ipAddress = it }
-        ContinueButton(ipAddress)
+        ContinueButton(navController,ipAddress)
     }
 }
 
@@ -145,7 +149,7 @@ fun ServerCredentialsField(hint: String, value: String, onValueChange: (String) 
 
 
 @Composable
-fun ContinueButton(ipAddress: String) {
+fun ContinueButton(navController: NavController,ipAddress: String) {
     val mContext = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
@@ -170,9 +174,7 @@ fun ContinueButton(ipAddress: String) {
                                     Toast.LENGTH_SHORT
                                 ).show()
 
-                                // Navigate to the next activity
-                                val intent = Intent(mContext, OnboardingCarousalActivity::class.java)
-                                mContext.startActivity(intent)
+                                navController.navigate("carousal")
                             } else {
                                 // Backend returned failure status
                                 Toast.makeText(

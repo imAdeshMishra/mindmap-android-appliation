@@ -13,6 +13,7 @@ android {
     defaultConfig {
         applicationId = "com.project.mindmap"
         minSdk = 24
+        //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -65,6 +66,10 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
+
+//    Navigation Controller dependencies
+    implementation(libs.androidx.navigation.compose)
+    implementation (libs.androidx.hilt.navigation.compose)
 
     implementation(libs.foundation.pager)
     // Hilt for dependency injection

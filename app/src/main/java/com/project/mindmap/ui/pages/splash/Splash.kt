@@ -19,25 +19,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.project.mindmap.ui.theme.outfitFontFamily
 
-@Preview
 @Composable
-fun SplashScreen(modifier: Modifier = Modifier){
+fun SplashScreen(navController: NavController){
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White), // Set background to white
         contentAlignment = Alignment.Center // Center the splash design
     ) {
-
             Box(
                 modifier = Modifier
                     .scale(2.0f) // Increase the scale to zoom in
             ) {
                 SplashDesign()
             }
-
             Text(
                 text = "Mind-Map.",
                 style = TextStyle(

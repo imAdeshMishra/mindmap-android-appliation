@@ -29,15 +29,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.project.mindmap.R
-import com.project.mindmap.ui.pages.home.HomeActivity
 import com.project.mindmap.ui.theme.BoldH1Black
 import com.project.mindmap.ui.theme.BoldH2
 import com.project.mindmap.ui.theme.BoldH3White
 
-@Preview
 @Composable
-fun FormScreen(){
+fun FormScreen(navController: NavController){
     Column(
         modifier = Modifier
             .background(color = Color.White),
@@ -59,7 +58,7 @@ fun FormScreen(){
                 Spacer(modifier = Modifier.height(16.dp))
             }
         }
-        ContinueButton()
+        ContinueButton(navController)
     }
 }
 
@@ -99,7 +98,7 @@ fun FormItem(itemInfo: FormItemInfo){
 }
 
 @Composable
-fun ContinueButton(){
+fun ContinueButton(navController: NavController){
     val mContext = LocalContext.current
     Box(modifier = Modifier.padding(vertical = 16.dp)){
         Button( colors = ButtonDefaults.buttonColors(
@@ -109,7 +108,7 @@ fun ContinueButton(){
                 .fillMaxWidth() // Makes the button fill the entire width of its parent
                 .padding(horizontal = 16.dp),
             onClick = {
-                mContext.startActivity(Intent(mContext, HomeActivity::class.java))
+                navController.navigate("home")
             }) {
             Text(text = "Continue", style = BoldH3White)
         }
@@ -139,7 +138,7 @@ val options = listOf(
         isSelected = mutableStateOf(value = false)
     ),
     FormItemInfo(
-        title = "Mental Health Conditons",
+        title = "Mental Health Conditions",
         imageRes = R.drawable.form_icon5,
         isSelected = mutableStateOf(value = false)
     ),

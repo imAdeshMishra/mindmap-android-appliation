@@ -14,33 +14,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mindmap"
         tools:targetApi="31" >
-        <activity
-            android:name=".ui.pages.onboarding.form.OnboardingFormActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.pages.server.ServerConnectionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.pages.signup.SignupActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.pages.login.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.pages.home.HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.pages.onboarding.form.RequirementFormActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.pages.onboarding.carousal.OnboardingCarousalActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.pages.splash.SplashActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.pages.onboarding.category.UserCategoryActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".ui.pages.onboarding.form.OnboardingFormActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ui.pages.server.ServerConnectionActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ui.pages.signup.SignupActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ui.pages.login.LoginActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ui.pages.home.HomeActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ui.pages.onboarding.form.RequirementFormActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ui.pages.onboarding.carousal.OnboardingCarousalActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ui.pages.splash.SplashActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ui.pages.onboarding.category.UserCategoryActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".MainActivity"
             android:exported="true"

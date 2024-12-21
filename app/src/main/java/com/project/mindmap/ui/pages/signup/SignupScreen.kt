@@ -43,9 +43,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.project.mindmap.models.LoginCredentials
-import com.project.mindmap.ui.pages.login.LoginActivity
-import com.project.mindmap.ui.pages.onboarding.category.UserCategoryActivity
 import com.project.mindmap.ui.pages.splash.SplashDesign
 import com.project.mindmap.ui.theme.BoldH3White
 import com.project.mindmap.ui.theme.NonBoldH2
@@ -55,7 +55,8 @@ import com.project.mindmap.viewmodel.UserViewModel
 
 
 @Composable
-fun SignupScreenComposable(viewModel: UserViewModel){
+fun SignupScreenComposable(navController: NavController){
+    val userViewModel: UserViewModel = hiltViewModel()
     Box(modifier = Modifier
         .fillMaxHeight()
         .background(color = Color(0XFFf8f8f8)),
@@ -79,7 +80,7 @@ fun SignupScreenComposable(viewModel: UserViewModel){
             Text(text = "Welcome!",
                 style = NonBoldH2)
             Spacer(modifier = Modifier.height(24.dp))
-            SignupCredentialsComposable(viewModel)
+            SignupCredentialsComposable(navController,userViewModel)
         }
         Box (modifier = Modifier
             .offset(x = (0).dp, y = 140.dp)
@@ -93,9 +94,8 @@ fun SignupScreenComposable(viewModel: UserViewModel){
 
 }
 
-//@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignupCredentialsComposable(viewModel: UserViewModel){
+fun SignupCredentialsComposable(navController: NavController,viewModel: UserViewModel){
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     Column {
@@ -103,8 +103,8 @@ fun SignupCredentialsComposable(viewModel: UserViewModel){
         SignupCredentialsField("Your E-mail", email) { email = it }
         Text(text = "Enter your Password")
         SignupCredentialsField("Create Password", password) { password = it }
-        SignupOptions()
-        ContinueButton(email,password,viewModel)
+        SignupOptions(navController)
+        ContinueButton(navController,email,password,viewModel)
     }
 }
 
@@ -149,7 +149,7 @@ fun SignupCredentialsField(hint: String, value: String, onValueChange: (String) 
 
 
 @Composable
-fun SignupOptions(){
+fun SignupOptions(navController: NavController){
     val mContext = LocalContext.current
     Row (modifier = Modifier
         .fillMaxWidth()
@@ -168,8 +168,7 @@ fun SignupOptions(){
                 .pointerInput(Unit) {
                     detectTapGestures(
                         onTap = {
-
-                            mContext.startActivity(Intent(mContext, LoginActivity::class.java))
+                            navController.navigate("login")
                         })
                 }
         )
@@ -178,7 +177,7 @@ fun SignupOptions(){
 
 
 @Composable
-fun ContinueButton(email: String, password: String, viewModel: UserViewModel) {
+fun ContinueButton(navController: NavController,email: String, password: String, viewModel: UserViewModel) {
     val mContext = LocalContext.current
 
     Button(
@@ -193,7 +192,7 @@ fun ContinueButton(email: String, password: String, viewModel: UserViewModel) {
                 viewModel.createUser(userCredentials) { responseBody, error ->
                     if (responseBody != null) {
                         Toast.makeText(mContext, "User Created: ${responseBody["status"]}", Toast.LENGTH_SHORT).show()
-                        mContext.startActivity(Intent(mContext, UserCategoryActivity::class.java))
+                        navController.navigate("userCategory")
                     } else {
                         Toast.makeText(mContext, error ?: "Unknown Error", Toast.LENGTH_SHORT).show()
                     }
