@@ -1,36 +1,31 @@
 package com.project.mindmap.ui.pages.onboarding.form
 
-import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -40,7 +35,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
@@ -49,6 +43,7 @@ import com.project.mindmap.ui.theme.BoldH1Black
 import com.project.mindmap.ui.theme.BoldH2
 import com.project.mindmap.ui.theme.BoldH3White
 import com.project.mindmap.ui.theme.NonBoldH3
+import com.project.mindmap.ui.theme.PurpleGrey80
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -58,6 +53,7 @@ fun OnboardingScreenComposable(navController: NavController) {
     Scaffold(
         Modifier.background(color = Color(0XFFf8f8f8)),
         topBar = {
+
             MyAppBar()
         }
     ) { paddingValues ->
@@ -105,7 +101,6 @@ fun UserFormComposable() {
         FormDropdown("Marital Status", listOf("Single", "Married"))
     }
 }
-
 @Composable
 fun FormDropdown(fieldType: String, options: List<String>) {
     var expanded = remember { mutableStateOf(false) }
@@ -114,7 +109,6 @@ fun FormDropdown(fieldType: String, options: List<String>) {
     Column(modifier = Modifier.padding(vertical = 16.dp)) {
         Box(
             modifier = Modifier
-
                 .fillMaxWidth()
                 .background(
                     Color.White,
@@ -125,47 +119,42 @@ fun FormDropdown(fieldType: String, options: List<String>) {
                     color = Color(0XFFe4e4e4),
                     shape = RoundedCornerShape(16.dp)
                 )
-//                .clickable { expanded.value = true },
-                .pointerInput(Unit) {
-                    expanded.value = true
+                .clickable {
+                    expanded.value = !expanded.value // Toggle the dropdown visibility
                 }
         ) {
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp, vertical = 16.dp),
-                text = if (selectedOption.value.isEmpty()) fieldType else selectedOption.value,
+                text = selectedOption.value.ifEmpty { fieldType },
                 style = NonBoldH3
             )
-            DropdownMenu(
-                expanded = expanded.value,
-                onDismissRequest = { expanded.value = false },
-                modifier = Modifier
-                    .fillMaxWidth() // Match the width of the parent
-                    .background(
-                        Color.White,
-                        shape = RoundedCornerShape(16.dp)
-                    )
-                    .border(
-                        width = 0.dp,
-                        color = Color(0XFFe4e4e4),
-                        shape = RoundedCornerShape(16.dp)
-                    )
-            ) {
-                options.forEach { option ->
-                    DropdownMenuItem(
-                        text = {
-                            Text(
-                                text = option,
-                                style = NonBoldH3
-                            )
-                        },
-                        onClick = {
-                            selectedOption.value = option
-                            expanded.value = false
-                        }
-                    )
-                }
+        }
+
+        DropdownMenu(
+            expanded = expanded.value,
+            onDismissRequest = { expanded.value = false }, // Close the dropdown when clicked outside
+            modifier = Modifier
+                .fillMaxWidth() // Match the width of the parent
+                .background(
+                    color = PurpleGrey80
+
+                )
+        ) {
+            options.forEach { option ->
+                DropdownMenuItem(
+                    text = {
+                        Text(
+                            text = option,
+                            style = NonBoldH3
+                        )
+                    },
+                    onClick = {
+                        selectedOption.value = option
+                        expanded.value = false // Close the dropdown after selection
+                    }
+                )
             }
         }
     }
@@ -198,7 +187,7 @@ fun UserInfoField(hint: String, value: String, onValueChange: (String) -> Unit) 
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = Color.White,
                 unfocusedIndicatorColor = Color.Transparent,
-                focusedIndicatorColor = Color(0XFF3b88e3),
+                focusedIndicatorColor = Color.Transparent,
             ),
             placeholder = {
                 Text(
@@ -215,6 +204,13 @@ fun UserInfoField(hint: String, value: String, onValueChange: (String) -> Unit) 
 @Composable
 fun MyAppBar() {
     TopAppBar(
+        colors = TopAppBarColors(
+            containerColor = Color(0XFFf8f8f8),
+            scrolledContainerColor = Color(0XFFf8f8f8),
+            navigationIconContentColor = Color(0XFFf8f8f8),
+            titleContentColor = Color(0XFFf8f8f8),
+            actionIconContentColor = Color(0XFFf8f8f8),
+        ),
         title = {
             Text(text = "User Details", style = BoldH1Black)
         },
@@ -250,13 +246,17 @@ fun DatePickerDocked() {
         convertMillisToDate(it)
     } ?: ""
 
+    val backgroundColor = Color(0XFFF5EEF6)
+    val borderColor = Color(0XFFF0E3F3)
+    val textColor = Color.Black // Set a color that works well in both modes
+
     Box(
         modifier = Modifier.padding(vertical = 16.dp)
     ) {
         OutlinedTextField(
             value = selectedDate,
             onValueChange = {},
-            textStyle = NonBoldH3,
+            textStyle = NonBoldH3.copy(color = textColor),
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
@@ -274,7 +274,8 @@ fun DatePickerDocked() {
                 IconButton(onClick = { showDatePicker.value = !showDatePicker.value }) {
                     Icon(
                         imageVector = Icons.Default.DateRange,
-                        contentDescription = "Select date"
+                        contentDescription = "Select date",
+                        tint = textColor
                     )
                 }
             },
@@ -286,12 +287,10 @@ fun DatePickerDocked() {
             placeholder = {
                 Text(
                     text = "DD/MM/YYYY",
-                    style = NonBoldH3
+                    style = NonBoldH3.copy(color = textColor)
                 )
             },
         )
-
-
 
         if (showDatePicker.value) {
             Popup(
@@ -303,16 +302,26 @@ fun DatePickerDocked() {
                         .padding(32.dp)
                         .border(
                             width = 2.dp,
-                            color = Color(0XFFF0E3F3),
+                            color = borderColor,
                             shape = RoundedCornerShape(16.dp)
                         )
-                        .background(color = Color(0XFFF5EEF6),
-                            shape = RoundedCornerShape(16.dp))
+                        .background(
+                            color = backgroundColor,
+                            shape = RoundedCornerShape(16.dp)
+                        )
                 ) {
                     Column {
                         DatePicker(
                             state = datePickerState,
-                            showModeToggle = false
+                            showModeToggle = false,
+                            colors = DatePickerDefaults.colors(
+                                containerColor = backgroundColor,
+                                titleContentColor = textColor,
+                                headlineContentColor = textColor,
+                                dayContentColor = textColor,
+                                selectedDayContentColor = Color.White,
+                                selectedDayContainerColor = Color(0XFF3b88e3)
+                            )
                         )
                         Box(
                             modifier = Modifier
@@ -322,17 +331,21 @@ fun DatePickerDocked() {
                                 onClick = {
                                     showDatePicker.value = false // Close the popup
                                 },
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Color(0XFF3b88e3),
+                                    contentColor = Color.White
+                                )
                             ) {
                                 Text("Confirm")
                             }
                         }
-
                     }
                 }
             }
         }
     }
 }
+
 
 fun convertMillisToDate(millis: Long): String {
     val formatter = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())

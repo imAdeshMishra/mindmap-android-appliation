@@ -53,14 +53,6 @@ import kotlinx.coroutines.launch
 @Composable
 fun ServerConnectionScreenComposable(navController: NavController){
 
-    LaunchedEffect(Unit) {
-        kotlinx.coroutines.delay(2000) // 2 seconds delay
-        navController.navigate("serverConnection") {
-            // Optional: clear the back stack to avoid returning to the splash screen
-            popUpTo("splash") { inclusive = true }
-        }
-    }
-
     Box(modifier = Modifier
         .fillMaxHeight()
         .background(color = Color(0XFFf8f8f8)),
