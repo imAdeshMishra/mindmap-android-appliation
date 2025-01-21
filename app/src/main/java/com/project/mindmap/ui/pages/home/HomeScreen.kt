@@ -34,14 +34,14 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.project.mindmap.R
 import com.project.mindmap.ui.theme.BoldH1Black
 import com.project.mindmap.ui.theme.NonBoldH2
 import com.project.mindmap.ui.theme.NonBoldH3
 
-@Preview
 @Composable
-fun HomeScreen(){
+fun HomeScreen(navController: NavController){
     Column (
         modifier = Modifier
             .fillMaxHeight()

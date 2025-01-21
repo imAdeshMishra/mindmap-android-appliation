@@ -33,17 +33,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.project.mindmap.R
-import com.project.mindmap.ui.pages.login.LoginActivity
-import com.project.mindmap.ui.pages.onboarding.form.RequirementFormActivity
 import com.project.mindmap.ui.theme.BoldH1Black
 import com.project.mindmap.ui.theme.BoldH2
 import com.project.mindmap.ui.theme.BoldH3White
 import com.project.mindmap.ui.theme.outfitFontFamily
 
-@Preview
 @Composable
-fun CarousalScreen() {
+fun CarousalScreen(navController: NavController) {
     val pagerState = rememberPagerState(initialPage = 0, pageCount = { pages.size })
 
     Column(horizontalAlignment = Alignment.CenterHorizontally,
@@ -59,7 +57,7 @@ fun CarousalScreen() {
             CarousalItem(pages[page])
         }
         PageIndicator(pagerState)
-        ContinueButton()
+        ContinueButton(navController)
     }
 }
 
@@ -161,7 +159,7 @@ fun CarousalItem(page: OnBoardModel){
 
 
 @Composable
-fun ContinueButton(){
+fun ContinueButton(navController: NavController){
     val mContext = LocalContext.current
     Box(modifier = Modifier.padding(vertical = 16.dp)){
         Button( colors = ButtonDefaults.buttonColors(
@@ -171,7 +169,7 @@ fun ContinueButton(){
                 .fillMaxWidth() // Makes the button fill the entire width of its parent
                 .padding(horizontal = 16.dp),
             onClick = {
-                mContext.startActivity(Intent(mContext, LoginActivity::class.java))
+                navController.navigate("login")
             }) {
             Text(text = "Continue", style = BoldH3White)
         }
