@@ -88,6 +88,8 @@ dependencies {
     // Jetpack Navigation for Compose
     implementation(libs.androidx.navigation.compose)
 
+    implementation(libs.google.accompanist.flowlayout)
+
     // Coroutine Support (if not already included)
     implementation(libs.kotlinx.coroutines.android)
 

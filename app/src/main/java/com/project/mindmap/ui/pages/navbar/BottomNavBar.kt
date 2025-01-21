@@ -21,13 +21,12 @@ import androidx.navigation.compose.composable
 import com.project.mindmap.ui.pages.community.CommunitiesScreen
 import com.project.mindmap.ui.pages.home.HomeScreen
 import com.project.mindmap.ui.pages.programs.ProgramLibraryScreen
-import com.project.mindmap.ui.pages.therapistis.TherapistsScreen
+import com.project.mindmap.ui.pages.therapistis.therapists.TherapistsScreen
 import com.project.mindmap.ui.pages.elite.EliteScreen
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.project.mindmap.ui.theme.NonBoldH4
 import com.project.mindmap.ui.theme.NonBoldH4Black
 
 
@@ -54,7 +53,7 @@ fun BottomNavBarComposable(navController: NavController) {
         ) {
             composable("home") { HomeScreen(navController) }
             composable("program") { ProgramLibraryScreen(navController) }
-            composable("therapists") { TherapistsScreen() }
+            composable("therapists") { TherapistsScreen(navController) }
             composable("communities") { CommunitiesScreen() }
             composable("elite") { EliteScreen() }
         }

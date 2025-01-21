@@ -223,6 +223,75 @@ val NonBoldH5White = TextStyle(
     fontFamily = outfitFontFamily,
     color = Color.White
 )
+val BoldH1Blue = TextStyle(
+    fontSize = 18.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val BoldH2Blue = TextStyle(
+    fontSize = 16.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val BoldH3Blue = TextStyle(
+    fontSize = 14.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val BoldH4Blue = TextStyle(
+    fontSize = 12.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val BoldH5Blue = TextStyle(
+    fontSize = 10.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val NonBoldH1Blue = TextStyle(
+    fontSize = 18.sp,
+    fontWeight = FontWeight(400),
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val NonBoldH2Blue = TextStyle(
+    fontSize = 16.sp,
+    fontWeight = FontWeight(400),
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val NonBoldH3Blue = TextStyle(
+    fontSize = 14.sp,
+    fontWeight = FontWeight(400),
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val NonBoldH4Blue = TextStyle(
+    fontSize = 12.sp,
+    fontWeight = FontWeight(400),
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val NonBoldH5Blue = TextStyle(
+    fontSize = 10.sp,
+    fontWeight = FontWeight(400),
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
 
 val NonBoldH4Underline = TextStyle(
     fontSize = 12.sp,

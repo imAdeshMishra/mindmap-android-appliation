@@ -67,7 +67,7 @@ fun ProgramLibraryScreen(navController: NavController){
         Column (
             modifier = Modifier
                 .fillMaxHeight()
-                .background(color = Color.White)
+                .background(color = Color(0XFFf8f8f8))
                 .verticalScroll(plScrollState)
                 .padding(paddingValues)
         ){
@@ -94,7 +94,7 @@ fun ProgramLibraryScreenPreview(){
         Column (
             modifier = Modifier
                 .fillMaxHeight()
-                .background(color = Color.White)
+                .background(color = Color(0XFFf8f8f8))
                 .verticalScroll(plScrollState)
                 .padding(paddingValues)
         ){

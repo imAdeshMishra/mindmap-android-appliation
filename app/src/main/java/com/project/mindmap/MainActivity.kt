@@ -24,6 +24,7 @@ import com.project.mindmap.ui.pages.onboarding.form.OnboardingScreenComposable
 import com.project.mindmap.ui.pages.server.ServerConnectionScreenComposable
 import com.project.mindmap.ui.pages.signup.SignupScreenComposable
 import com.project.mindmap.ui.pages.splash.SplashScreen
+import com.project.mindmap.ui.pages.therapistis.therapistDetails.TherapistDetailsScreen
 import com.project.mindmap.ui.theme.MindmapTheme
 import com.project.mindmap.ui.theme.Pink40
 import com.project.mindmap.ui.theme.Pink80
@@ -85,6 +86,9 @@ fun MindmapApp() {
         }
         composable("navbar") {
             BottomNavBarComposable(navController)
+        }
+        composable("therapistDetails") {
+            TherapistDetailsScreen(navController)
         }
     }
 }

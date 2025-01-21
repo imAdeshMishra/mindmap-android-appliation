@@ -1,14 +1,14 @@
-package com.project.mindmap.ui.pages.therapistis
+package com.project.mindmap.ui.pages.therapistis.therapists
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,54 +22,32 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.project.mindmap.R
-import com.project.mindmap.ui.theme.BoldH1Black
 import com.project.mindmap.ui.theme.BoldH3Black
 import com.project.mindmap.ui.theme.NonBoldH3
 import com.project.mindmap.ui.theme.NonBoldH4
 import com.project.mindmap.ui.theme.NonBoldH4Underline
 
-@Preview
 @Composable
-fun TherapistsScreen() {
-
-    Scaffold(
-        Modifier.background(color = Color(0XFFf8f8f8)),
-        topBar = {
-            TherapistsAppBar()
-        }
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-                .background(color = Color.White)
-                .padding(paddingValues)
-        ) {
-            TherapistsGridComposable()
-        }
-    }
+fun TherapistsFragment(navController: NavController){
+    TherapistsGridComposable(navController)
 }
 
-
-//@Preview
 @Composable
-fun TherapistsGridComposable() {
+fun TherapistsGridComposable(navController: NavController) {
     Column {
 
         LazyVerticalGrid(
@@ -79,14 +57,14 @@ fun TherapistsGridComposable() {
             contentPadding = PaddingValues(horizontal = 8.dp),
         ) {
             items(therapistsList) { therapist ->
-                TherapistCard(therapist)
+                TherapistCard(therapist, navController)
             }
         }
     }
 }
 
 @Composable
-fun TherapistCard(therapist: TherapistInfo) {
+fun TherapistCard(therapist: TherapistInfo, navController:NavController) {
     Box(
         modifier = Modifier
             .height(280.dp)
@@ -96,6 +74,12 @@ fun TherapistCard(therapist: TherapistInfo) {
                 shape = RoundedCornerShape(20.dp),
                 clip = false
             )
+            .pointerInput(Unit) {
+                detectTapGestures(
+                    onTap = {
+                        navController.navigate("therapistDetails")
+                    })
+            }
     ) {
         Column(
             modifier = Modifier
@@ -205,53 +189,6 @@ fun TherapistCard(therapist: TherapistInfo) {
     }
 }
 
-
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun TherapistsAppBar(
-//    navController: NavController
-) {
-    TopAppBar(
-        colors = TopAppBarColors(
-            containerColor = Color(0XFFffffff),
-            scrolledContainerColor = Color(0XFFffffff),
-            navigationIconContentColor = Color(0XFFffffff),
-            titleContentColor = Color(0XFFffffff),
-            actionIconContentColor = Color(0XFFffffff),
-        ),
-//        modifier = Modifier.height(80.dp),
-        title = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 4.dp),
-//                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-
-                Text(
-                    "Therapists",
-                    style = BoldH1Black,
-                )
-            }
-        },
-//        navigationIcon = {
-//            Column (modifier = Modifier.fillMaxHeight(),
-//                verticalArrangement = Arrangement.Center){
-//                IconButton(onClick = { navController.popBackStack() }) {
-//                    Icon(
-//                        Icons.AutoMirrored.Filled.ArrowBack, // Replace with your back icon resource
-//                        contentDescription = "Back",
-//                        tint = Color.White
-//                    )
-//                }
-//            }
-//
-//        }
-    )
-}
-
 val therapistsList = listOf(
     TherapistInfo(
         therapistName = "Ms. Anushka Anand",
@@ -343,12 +280,10 @@ val therapistsList = listOf(
     )
 )
 
-
 data class TherapistInfo(
     val therapistName: String,
     val profileAvatar: Int,
     val speciality: String,
     val subSpeciality: String,
     val availability: String,
-
     )
