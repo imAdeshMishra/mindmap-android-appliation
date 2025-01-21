@@ -117,7 +117,6 @@ fun HomeScreenTopBar() {
             modifier = Modifier
                 .size(200.dp)
                 .offset(x = (200).dp, y = 48.dp)
-
         )
         // Main content
         Column(
@@ -359,8 +358,6 @@ fun CourseModulesComposable(navController: NavController) {
                     }
 
                 }
-
-
             }
         }
     }

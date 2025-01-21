@@ -8,7 +8,6 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
@@ -38,9 +37,9 @@ fun BottomNavBarComposable(navController: NavController) {
     val bottomNavItems = listOf(
         BottomNavItem("home", Icons.Default.Home, "Home"),
         BottomNavItem("program", Icons.Default.ShoppingCart, "Programs"),
+        BottomNavItem("therapists", Icons.Default.Person, "Therapists"),
         BottomNavItem("communities", Icons.Default.Face, "Groups"),
         BottomNavItem("elite", Icons.Default.Star, "Elite"),
-        BottomNavItem("therapists", Icons.Default.Person, "Therapists")
     )
 
     Scaffold(
@@ -54,10 +53,10 @@ fun BottomNavBarComposable(navController: NavController) {
             modifier = Modifier.padding(padding)
         ) {
             composable("home") { HomeScreen(navController) }
-            composable("program") { ProgramLibraryScreen() }
+            composable("program") { ProgramLibraryScreen(navController) }
+            composable("therapists") { TherapistsScreen() }
             composable("communities") { CommunitiesScreen() }
             composable("elite") { EliteScreen() }
-            composable("therapists") { TherapistsScreen() }
         }
     }
 }

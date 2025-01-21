@@ -58,7 +58,6 @@ fun DailyWellnessScreen(navController: NavController) {
     Scaffold(
         Modifier.background(color = Color(0XFFf8f8f8)),
         topBar = {
-
             DailyWellnessAppBar(navController)
         }
     ){ paddingValues ->
@@ -71,7 +70,6 @@ fun DailyWellnessScreen(navController: NavController) {
             ProgramGridComposable()
         }
     }
-
 }
 
 @Preview

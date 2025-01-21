@@ -28,7 +28,7 @@ import com.project.mindmap.ui.theme.outfitFontFamily
 fun SplashScreen(navController: NavController){
     LaunchedEffect(Unit) {
         kotlinx.coroutines.delay(2000) // 2 seconds delay
-        navController.navigate("onboardingForm") {
+        navController.navigate("navbar") {
             // Optional: clear the back stack to avoid returning to the splash screen
             popUpTo("splash") { inclusive = true }
         }
@@ -106,9 +106,7 @@ fun SplashDesign(){
                     ){
 
                     }
-
                 }
-
             }
         }
     }

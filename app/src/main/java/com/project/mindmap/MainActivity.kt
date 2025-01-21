@@ -14,21 +14,16 @@ import androidx.core.view.WindowCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.project.mindmap.ui.pages.community.CommunitiesScreen
 import com.project.mindmap.ui.pages.dailywellness.DailyWellnessScreen
-import com.project.mindmap.ui.pages.elite.EliteScreen
-import com.project.mindmap.ui.pages.home.HomeScreen
 import com.project.mindmap.ui.pages.login.LoginScreenComposable
 import com.project.mindmap.ui.pages.navbar.BottomNavBarComposable
 import com.project.mindmap.ui.pages.onboarding.carousal.CarousalScreen
 import com.project.mindmap.ui.pages.onboarding.category.CategoryScreenComposable
 import com.project.mindmap.ui.pages.onboarding.form.FormScreen
 import com.project.mindmap.ui.pages.onboarding.form.OnboardingScreenComposable
-import com.project.mindmap.ui.pages.programs.ProgramLibraryScreen
 import com.project.mindmap.ui.pages.server.ServerConnectionScreenComposable
 import com.project.mindmap.ui.pages.signup.SignupScreenComposable
 import com.project.mindmap.ui.pages.splash.SplashScreen
-import com.project.mindmap.ui.pages.therapistis.TherapistsScreen
 import com.project.mindmap.ui.theme.MindmapTheme
 import com.project.mindmap.ui.theme.Pink40
 import com.project.mindmap.ui.theme.Pink80
@@ -60,7 +55,7 @@ class MainActivity : ComponentActivity() {
 fun MindmapApp() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "navbar") {
+    NavHost(navController = navController, startDestination = "splash") {
         composable("splash") {
             SplashScreen(navController)
         }
