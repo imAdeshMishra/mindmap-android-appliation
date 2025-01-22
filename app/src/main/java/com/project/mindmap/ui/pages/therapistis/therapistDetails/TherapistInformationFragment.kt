@@ -8,10 +8,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -22,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.flowlayout.FlowCrossAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
@@ -35,21 +38,26 @@ import com.project.mindmap.ui.theme.BoldLargeBlack
 import com.project.mindmap.ui.theme.NonBoldH3
 import com.project.mindmap.ui.theme.NonBoldH4
 
+@Preview
 @Composable
-fun TherapistInformationFragment(){
-    Column {
+fun TherapistInformationFragment() {
+    Column(
+    ) {
         AboutTherapistComposable()
         AffiliationsComposable()
         CoreServicesComposable()
         TherapistScopesComposable()
         TherapistLanguagesComposable()
         FAQsComposable(therapistFAQs)
+//        CheckAvailabilityButton()
     }
+
+
 }
 
 @Composable
 fun AboutTherapistComposable() {
-    Spacer(modifier = Modifier.height( 16.dp))
+    Spacer(modifier = Modifier.height(16.dp))
     Text(
         "Hey! I am Dr. Anushka Anand, I am here to help you with everything mental health. I welcome you to bring your hopes, urges, behavioral patterns, and even the most irrelevant thoughts to this exploration of who you are,\n\nI firmly believe that our mind and emotions are powerful forces that can help us achieve goals while maintaining peace and harmony.",
         style = NonBoldH4,
@@ -60,7 +68,7 @@ fun AboutTherapistComposable() {
 @Composable
 fun AffiliationsComposable() {
 
-    Column (
+    Column(
         modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth()
@@ -85,16 +93,15 @@ fun AffiliationsComposable() {
     }
 
 
-
 }
 
 @Composable
 fun CoreServicesComposable() {
-    Column (
+    Column(
         modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth()
-    ){
+    ) {
         Text(
             "Core Services",
             style = BoldLargeBlack
@@ -174,7 +181,7 @@ fun AffiliationContainer(affiliation: ImageItemInfo) {
 
     Box(
         modifier = Modifier
-            .width((screenWidth /2) - 28.dp)
+            .width((screenWidth / 2) - 28.dp)
             .background(color = Color.White, shape = RoundedCornerShape(16.dp))
             .border(
                 width = 1.dp,

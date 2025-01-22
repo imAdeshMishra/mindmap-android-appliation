@@ -91,7 +91,7 @@ fun TherapistDetailsScreen(navController: NavController) {
                 item { TherapistDetailFragmentIndicator(pagerState) }
                 item { TherapistDetailFragments(pagerState) }
             }
-            CheckAvailabilityButton()
+            if (pagerState.currentPage==0) CheckAvailabilityButton()
         }
     }
 }
@@ -208,13 +208,13 @@ fun TherapistInformationComposable() {
 }
 
 @Composable
-fun TherapistDetailFragments(pagerState:PagerState,){
+fun TherapistDetailFragments(pagerState:PagerState){
     HorizontalPager(
         state = pagerState,
     ) { page ->
         when (page) {
             0 -> TherapistInformationFragment() // First page content
-            1 -> TherapistAvailabilityFragment() // Second page content
+            1 -> TherapistAvailabilityFragment( ) // Second page content
         }
     }
 }

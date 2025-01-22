@@ -61,7 +61,7 @@ fun TherapistScreenFragments(pagerState: PagerState, navController: NavControlle
     ) { page ->
         when (page) {
             0 -> TherapistsGridComposable(navController) // First page content
-            1 -> TherapistAppointmentsFragment() // Second page content
+            1 -> TherapistAppointmentsFragment(navController) // Second page content
         }
     }
 }
