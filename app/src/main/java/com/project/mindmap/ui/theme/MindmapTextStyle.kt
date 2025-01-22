@@ -3,6 +3,7 @@ package com.project.mindmap.ui.theme
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.sp
 
 
@@ -74,6 +75,13 @@ val NonBoldH5 = TextStyle(
     fontWeight = FontWeight(400),
     fontFamily = outfitFontFamily,
     color = Color(0XFF707070)
+)
+
+val BoldLargeBlack = TextStyle(
+    fontSize = 22.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF252525)
 )
 
 val BoldH1Black = TextStyle(
@@ -214,4 +222,81 @@ val NonBoldH5White = TextStyle(
     fontWeight = FontWeight(400),
     fontFamily = outfitFontFamily,
     color = Color.White
+)
+val BoldH1Blue = TextStyle(
+    fontSize = 18.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val BoldH2Blue = TextStyle(
+    fontSize = 16.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val BoldH3Blue = TextStyle(
+    fontSize = 14.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val BoldH4Blue = TextStyle(
+    fontSize = 12.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val BoldH5Blue = TextStyle(
+    fontSize = 10.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val NonBoldH1Blue = TextStyle(
+    fontSize = 18.sp,
+    fontWeight = FontWeight(400),
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val NonBoldH2Blue = TextStyle(
+    fontSize = 16.sp,
+    fontWeight = FontWeight(400),
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val NonBoldH3Blue = TextStyle(
+    fontSize = 14.sp,
+    fontWeight = FontWeight(400),
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val NonBoldH4Blue = TextStyle(
+    fontSize = 12.sp,
+    fontWeight = FontWeight(400),
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val NonBoldH5Blue = TextStyle(
+    fontSize = 10.sp,
+    fontWeight = FontWeight(400),
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF69aeff)
+)
+
+val NonBoldH4Underline = TextStyle(
+    fontSize = 12.sp,
+    fontWeight = FontWeight(400),
+    fontFamily = outfitFontFamily,
+    color = Color(0XFF707070),
+    textDecoration = TextDecoration.Underline
 )

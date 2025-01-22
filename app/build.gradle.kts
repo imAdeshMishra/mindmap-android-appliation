@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-
     id("com.google.dagger.hilt.android") version "2.48" apply false
     id("kotlin-kapt") // No version needed here
 }
@@ -14,6 +13,7 @@ android {
     defaultConfig {
         applicationId = "com.project.mindmap"
         minSdk = 24
+        //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -44,9 +44,7 @@ android {
         compose = true
     }
     composeOptions {
-
         kotlinCompilerExtensionVersion = "1.5.13"
-
     }
     packaging {
         resources {
@@ -69,6 +67,9 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
 
+//    Navigation Controller dependencies
+    implementation(libs.androidx.navigation.compose)
+    implementation (libs.androidx.hilt.navigation.compose)
 
     implementation(libs.foundation.pager)
     // Hilt for dependency injection
@@ -87,9 +88,10 @@ dependencies {
     // Jetpack Navigation for Compose
     implementation(libs.androidx.navigation.compose)
 
+    implementation(libs.google.accompanist.flowlayout)
+
     // Coroutine Support (if not already included)
     implementation(libs.kotlinx.coroutines.android)
-
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

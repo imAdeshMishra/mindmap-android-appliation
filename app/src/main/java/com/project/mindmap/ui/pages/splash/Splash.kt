@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -19,25 +20,31 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.project.mindmap.ui.theme.outfitFontFamily
 
-@Preview
+
 @Composable
-fun SplashScreen(modifier: Modifier = Modifier){
+fun SplashScreen(navController: NavController){
+    LaunchedEffect(Unit) {
+        kotlinx.coroutines.delay(2000) // 2 seconds delay
+        navController.navigate("navbar") {
+            // Optional: clear the back stack to avoid returning to the splash screen
+            popUpTo("splash") { inclusive = true }
+        }
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White), // Set background to white
         contentAlignment = Alignment.Center // Center the splash design
     ) {
-
             Box(
                 modifier = Modifier
                     .scale(2.0f) // Increase the scale to zoom in
             ) {
                 SplashDesign()
             }
-
             Text(
                 text = "Mind-Map.",
                 style = TextStyle(
@@ -99,9 +106,7 @@ fun SplashDesign(){
                     ){
 
                     }
-
                 }
-
             }
         }
     }

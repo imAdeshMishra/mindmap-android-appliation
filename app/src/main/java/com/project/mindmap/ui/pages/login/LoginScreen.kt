@@ -30,23 +30,17 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.project.mindmap.ui.pages.onboarding.category.UserCategoryActivity
-
-import com.project.mindmap.ui.pages.onboarding.form.OnboardingFormActivity
-
-import com.project.mindmap.ui.pages.signup.SignupActivity
+import androidx.navigation.NavController
 import com.project.mindmap.ui.pages.splash.SplashDesign
 import com.project.mindmap.ui.theme.BoldH3White
 import com.project.mindmap.ui.theme.NonBoldH2
 import com.project.mindmap.ui.theme.NonBoldH3
 import com.project.mindmap.ui.theme.outfitFontFamily
 
-@Preview
 @Composable
-fun LoginScreenComposable(){
+fun LoginScreenComposable(navController: NavController){
     Box(modifier = Modifier
         .fillMaxHeight()
         .background(color = Color(0XFFf8f8f8)),
@@ -70,7 +64,7 @@ fun LoginScreenComposable(){
             Text(text = "Welcome Back!",
                 style = NonBoldH2)
             Spacer(modifier = Modifier.height(24.dp))
-            LoginCredentialsComposable()
+            LoginCredentialsComposable(navController)
         }
         Box (modifier = Modifier
             .offset(x = (0).dp, y = 140.dp)
@@ -86,14 +80,14 @@ fun LoginScreenComposable(){
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginCredentialsComposable(){
+fun LoginCredentialsComposable(navController: NavController){
     Column {
         Text(text = "Enter your Email Id")
         LoginCredentialsField("Your E-mail")
         Text(text = "Enter your Password")
         LoginCredentialsField("Password")
-        SignInOptions()
-        ContinueButton()
+        SignInOptions(navController)
+        ContinueButton(navController)
     }
 }
 
@@ -138,7 +132,7 @@ fun LoginCredentialsField(hint:String){
 
 
 @Composable
-fun SignInOptions(){
+fun SignInOptions(navController: NavController){
     val mContext = LocalContext.current
     Row (modifier = Modifier
         .fillMaxWidth()
@@ -157,7 +151,7 @@ fun SignInOptions(){
                 .pointerInput(Unit) {
                     detectTapGestures(
                         onTap = {
-                            mContext.startActivity(Intent(mContext, SignupActivity::class.java))
+                            navController.navigate("signup")
                         })
                 }
         )
@@ -165,7 +159,7 @@ fun SignInOptions(){
 }
 
 @Composable
-fun ContinueButton(){
+fun ContinueButton(navController: NavController){
     val mContext = LocalContext.current
     Button(
         colors = ButtonDefaults.buttonColors(
@@ -174,8 +168,7 @@ fun ContinueButton(){
             .fillMaxWidth()
             ,
         onClick = {
-            mContext.startActivity(Intent(mContext, OnboardingFormActivity::class.java))
-
+            navController.navigate("onboardingForm")
         }) {
         Text(text = "Continue", style = BoldH3White)
 
