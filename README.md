@@ -54,10 +54,13 @@ This project is a comprehensive mental wellness application built from scratch. 
 2. **Set up the backend:**
 
    -Navigate to the backend folder.
-   -Update the application.properties file with your PostgreSQL credentials.
-   -Build and run the Spring Boot application.
+   ```bash
+    git clone https://github.com/imAdeshMishra/mindmap-springboot-backend.git
+   
+  -Update the application.properties file with your PostgreSQL credentials.
+  -Build and run the Spring Boot application.
 
-3. **Set up the Android app:**
+4. **Set up the Android app:**
 
    -Open the project in Android Studio.
    -Sync the Gradle files.
