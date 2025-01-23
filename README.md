@@ -10,6 +10,11 @@ This project is a comprehensive mental wellness application built from scratch. 
 - **Secure Backend:** Built using Spring Boot with PostgreSQL as the database, ensuring robust data handling and security.
 - **MVVM Architecture:** Implements MVVM for clean code structure and ease of maintainability.
 
+  ### Acknowledgments
+- Special thanks to **Hiral Thakkar** for the application designs.
+- You can view the design on Behance: [MindMap - Design by Hiral Thakkar](https://www.behance.net/gallery/208121945/MindMap)
+- Figma Link of the MindMap apploication [MindMapFigma](https://www.figma.com/design/dAyqAGbAAlgQfEy9Zyv3jC/Mindmap-Latest-with-Prototype?node-id=38-993&p=f&t=bke8PeCffbxyqx43-0)
+
 ## Technologies Used
 
 ### Frontend
@@ -61,14 +66,3 @@ Contributions are welcome! Please follow these steps:
    -Fork the repository.
    -Create a new branch for your feature or bug fix.
    -Submit a pull request with a detailed description of the changes.
-
-### Acknowledgments
-- Special thanks to **Hiral Thakkar** for the application designs.
-- You can view the design on Behance: [MindMap - Design by Hiral Thakkar](https://www.behance.net/gallery/208121945/MindMap)
-- [Figma Link](https://www.figma.com/design/dAyqAGbAAlgQfEy9Zyv3jC/Mindmap-Latest-with-Prototype?node-id=38-993&p=f&t=bke8PeCffbxyqx43-0)
-
-
-
-
-
-   
