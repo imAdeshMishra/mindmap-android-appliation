@@ -13,7 +13,17 @@ This project is a comprehensive mental wellness application built from scratch. 
   ### Acknowledgments
 - Special thanks to **Hiral Thakkar** for the application designs.
 - You can view the design on Behance: [MindMap - Design by Hiral Thakkar](https://www.behance.net/gallery/208121945/MindMap)
-- Figma Link of the MindMap apploication [MindMapFigma](https://www.figma.com/design/dAyqAGbAAlgQfEy9Zyv3jC/Mindmap-Latest-with-Prototype?node-id=38-993&p=f&t=bke8PeCffbxyqx43-0)
+- Figma Link of the MindMap application [MindMapFigma](https://www.figma.com/design/dAyqAGbAAlgQfEy9Zyv3jC/Mindmap-Latest-with-Prototype?node-id=38-993&p=f&t=bke8PeCffbxyqx43-0)
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+
+<img src="https://github.com/user-attachments/assets/b0821cc5-7d75-4d1b-93df-127b11202b72" alt="Image 1" width="200" />
+<img src="https://github.com/user-attachments/assets/2a9122e5-b7f5-4191-beb8-efe870f84fa9" alt="Image 2" width="200" />
+<img src="https://github.com/user-attachments/assets/32fb6e73-7739-473e-abb0-de9f0ef18b7c" alt="Image 3" width="200" />
+<img src="https://github.com/user-attachments/assets/b0dab9b7-07b6-49e1-a5dc-ef2516a7cdd1" alt="Image 5" width="200" />
+
+</div>
+
 
 ## Technologies Used
 
