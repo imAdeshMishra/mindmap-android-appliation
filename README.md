@@ -35,3 +35,40 @@ This project is a comprehensive mental wellness application built from scratch. 
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/your-repository/mental-wellness-app.git
+
+2. **Set up the backend:**
+
+   -Navigate to the backend folder.
+   -Update the application.properties file with your PostgreSQL credentials.
+   -Build and run the Spring Boot application.
+
+3. **Set up the Android app:**
+
+   -Open the project in Android Studio.
+   -Sync the Gradle files.
+   -Build and run the app on an emulator or a physical device.
+
+### Future Enhancements
+
+   -Add support for video consultations with therapists.
+   -Expand course offerings with multilingual support.
+   -Integrate analytics to provide users with progress tracking.
+   
+### Contributing
+
+Contributions are welcome! Please follow these steps:
+
+   -Fork the repository.
+   -Create a new branch for your feature or bug fix.
+   -Submit a pull request with a detailed description of the changes.
+
+### Acknowledgments
+- Special thanks to **Hiral Thakkar** for the application designs.
+- You can view the design on Behance: [MindMap - Design by Hiral Thakkar](https://www.behance.net/gallery/208121945/MindMap)
+- [Figma Link](https://www.figma.com/design/dAyqAGbAAlgQfEy9Zyv3jC/Mindmap-Latest-with-Prototype?node-id=38-993&p=f&t=bke8PeCffbxyqx43-0)
+
+
+
+
+
+   
